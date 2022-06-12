@@ -284,7 +284,7 @@ h2 {
 
 .contact a.mail {
 	text-decoration: none;
-	color: #00aeff;
+	color: linear-gradient(blue, green);
 	padding-bottom: 8px;
 	font-size: 15px;
 }
