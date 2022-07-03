@@ -494,7 +494,7 @@ h3 {
 }
 
 .resume .func .interests-items div:hover span {
-  color: rgb(0, 225, 255);
+  color: rgb(255, 255, 255);
   transition-duration: 0.3s;
 }
 
