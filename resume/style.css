@@ -43,6 +43,7 @@ h3 {
 .resume {
   width: 960px;
   background: #33e4b4;
+  opacity: 0.92;
   color: #ffffff;
   margin: 20px auto;
   box-shadow: 10px 10px #0a6493;
