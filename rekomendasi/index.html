@@ -39,11 +39,22 @@
     var currX, currY;
     var signature = document.getElementsByName('signature')[0];
 
+    // Event listeners for mouse events
     canvas.addEventListener("mousemove", draw);
     canvas.addEventListener("mouseup", stop);
     canvas.addEventListener("mousedown", start);
 
+    // Event listeners for touch events
+    canvas.addEventListener("touchmove", drawTouch);
+    canvas.addEventListener("touchend", stop);
+    canvas.addEventListener("touchstart", startTouch);
+
     function start(e) {
+        drawing = true;
+    }
+
+    function startTouch(e) {
+        e.preventDefault(); // Prevent scrolling
         drawing = true;
     }
 
@@ -58,14 +69,28 @@
             return;
         }
 
-        var rect = canvas.getBoundingClientRect(); // Mendapatkan posisi absolut canvas
-        var clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-        var clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+        var rect = canvas.getBoundingClientRect();
+        currX = e.clientX - rect.left;
+        currY = e.clientY - rect.top;
 
-        // Menghitung posisi mouse relatif terhadap canvas
-        currX = clientX - rect.left;
-        currY = clientY - rect.top;
+        drawLine();
+    }
 
+    function drawTouch(e) {
+        if (!drawing) {
+            return;
+        }
+
+        e.preventDefault(); // Prevent scrolling
+
+        var rect = canvas.getBoundingClientRect();
+        currX = e.touches[0].clientX - rect.left;
+        currY = e.touches[0].clientY - rect.top;
+
+        drawLine();
+    }
+
+    function drawLine() {
         if (!prevX && !prevY) {
             prevX = currX;
             prevY = currY;
